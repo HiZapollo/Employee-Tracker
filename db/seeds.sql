@@ -20,8 +20,3 @@ VALUES ('Jack', 'Leaderson', 1, null),
        ('Rebecca', 'Builders', 3, null),
        ('Seth', 'Handy', 4, 3);
 
-SELECT E.first_name AS "Employee Name", 
-    CONCAT(M.first_name," ", M.last_name) AS "Manager" 
-    FROM employee E 
-    LEFT OUTER JOIN employee M 
-    ON E.manager_id = M.id;
