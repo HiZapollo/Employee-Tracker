@@ -14,7 +14,7 @@ To run the application, in the command line type 'npm start', and proceed with t
 
 The video below shows the process:
 
-[Example Video]
+[Example Video](https://drive.google.com/file/d/14zOgdtpFkIUg6t4j_AfNAXpTpGtHPMtn/view)
 
 ## Credits
 
