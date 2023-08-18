@@ -1,9 +1,9 @@
 const inquirer = require('inquirer');
-const Employee = require('./lib/employee.js');
+const Employee = require('./lib/employee.js'); //where all my methods are defined
 
 const db = new Employee;
 
-const questions = [
+const questions = [ // This just contains the only two questions that I could put here that don't rely on many nested methods
     {
         type: 'list',
         name: 'choices',
@@ -32,42 +32,17 @@ const questions = [
                 return true;
             }
         }
-    },
-    {
-        type: 'input',
-        name: 'role_name',
-        message: 'What is the name of the role?',
-        validate: (text) => {
-            if (!text) {
-                return "Error: must not be empty!"
-            } else if (text.length > 30) {
-                return "Error: must be less than or equal to 30 characters long!";
-            } else {
-                return true;
-            }
-        }
-    },
-    {
-        type: 'input',
-        name: 'role_salary',
-        message: 'What is the salary of the role?',
-        validate: (text) => {
-            if (!text) {
-                return "Error: must not be empty!"
-            } else {
-                return true;
-            }
-        }
     }
 ]
 
+// MAIN FUNCTION (it is called when the file is loaded, and when each prompt-line is finished, resulting in a loop that only ends when the user decides or an error occurs)
 function init() {
     inquirer.prompt(questions[0])
         .then((response) => {
 
             let choice = response.choices;
 
-            switch (choice) {
+            switch (choice) { // switch statement because if statements are ugly and take forever
                 case 'View all departments':
                     db.viewDepartments()
                         .then(([rows]) => {
@@ -107,7 +82,7 @@ function init() {
                 case 'Add Role':
                     db.viewDepartments()
                         .then(([rows]) => {
-                            let departments = rows.map((department) => ({ name: department.name, value: department.id }));
+                            let departments = rows.map((department) => ({ name: department.name, value: department.id }));// gives the name a hidden value of the department's id
                             inquirer.prompt([
                                 {
                                     type: 'input',
@@ -212,7 +187,6 @@ function init() {
                 case 'Update Employee Role':
                     db.viewRoles()
                         .then(([rows]) => {
-                            console.log(rows)
                             let roles = rows.map((role) => ({ name: role.title, value: role.id }));
                             db.viewEmployees()
                                 .then(([rows]) => {
